@@ -1,0 +1,24 @@
+{
+    "fourrooms-v0": {
+        "timesteps": 3e6,
+        "log_interval": 100,
+        "actor_lr": 1e-4,
+        "critic_lr": 1e-3,
+        "frequency": 10,
+        "K_epochs": 5,
+        "target_kl": 0.01,
+        "actor_fc_dim": [
+            256,
+            256
+        ],
+        "critic_fc_dim": [
+            512,
+            512
+        ],
+        "num_minibatch": 8,
+        "minibatch_size": 512,
+        "batch_size": 4096,
+        "render_fps": 10,
+        "gamma": 0.99
+    }
+}

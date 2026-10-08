@@ -1,0 +1,17 @@
+best_params:
+  batch_size: 2000
+  clip_range: 0.02201736113211472
+  ent_coef: 0.017097781717420445
+  gae_lambda: 0.9209749005909929
+  gamma: 0.9406615707743251
+  learning_rate: 0.00021717846611501938
+  max_grad_norm: 0.6742389422627795
+  n_epochs: 20
+  vf_coef: 0.8165389836113303
+best_trial_number: 5
+best_value: 0.06150582999999999
+study_name: allo_subpolicy_fetch
+user_attrs:
+  artifact_dir: out/fetch/allo/subpolicies/rep_0/7.k.a/allo_subpolicy_fetch_eig0/optuna_trials/trial_5
+  best_model_path: out/fetch/allo/subpolicies/rep_0/7.k.a/allo_subpolicy_fetch_eig0/optuna_trials/trial_5/best_model.zip
+  final_model_path: out/fetch/allo/subpolicies/rep_0/7.k.a/allo_subpolicy_fetch_eig0/optuna_trials/trial_5/final_model.zip

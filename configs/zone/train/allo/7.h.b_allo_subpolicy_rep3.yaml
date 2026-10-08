@@ -1,0 +1,19 @@
+pipeline_config:
+  experiment_id: ""
+  device: ""
+  retrain_model: false
+  save_config:
+    models_dir: out/zone/allo/subpolicies/7.h.b/rep_3
+    model_name: allo_subpolicy_zone
+    model_filename: final_model.zip
+    best_model_filename: best_model.zip
+    monitor_dir: monitor
+    tb_dir: tb
+    eval_dir: eval
+    eval_metrics_filename: eval.yaml
+    animation_dir: animations
+    animation_ext: gif
+  config_dir: configs/zone
+  env_config_file: env/button/button_ang8_vel5_rand_ag_250_st2_no_term.yaml
+  wrapper_config_file: allo/subpolicy/allo_subpolicy_7.h.b.yaml
+  model_config_file: rl/ppo_dict_128_1M_allo_tuned.yaml

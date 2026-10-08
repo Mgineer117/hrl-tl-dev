@@ -1,0 +1,14 @@
+phi_bd: Fpsi_bd
+phi_gl: Fpsi_gl
+phi_hl: Fpsi_hl
+phi_ld: Fpsi_ld
+phi_lv: Fpsi_lv
+phi_rd: Fpsi_rd
+phi_td: Fpsi_td
+c_phi_bd: F(psi_gl | psi_hl | psi_ld | psi_lv | psi_rd | psi_td) & G!psi_bd
+c_phi_gl: F(psi_bd | psi_hl | psi_ld | psi_lv | psi_rd | psi_td) & G!psi_gl
+c_phi_hl: F(psi_bd | psi_gl | psi_ld | psi_lv | psi_rd | psi_td) & G!psi_hl
+c_phi_ld: F(psi_bd | psi_gl | psi_hl | psi_lv | psi_rd | psi_td) & G!psi_ld
+c_phi_lv: F(psi_bd | psi_gl | psi_hl | psi_ld | psi_rd | psi_td) & G!psi_lv
+c_phi_rd: F(psi_bd | psi_gl | psi_hl | psi_ld | psi_lv | psi_td) & G!psi_rd
+c_phi_td: F(psi_bd | psi_gl | psi_hl | psi_ld | psi_lv | psi_rd) & G!psi_td

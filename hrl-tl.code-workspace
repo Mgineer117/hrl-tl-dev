@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../rl-pipeline"
+		},
+		{
+			"path": "../ContGrid"
+		},
+		{
+			"path": "../overleaf/2026-TL-HRL-AAMAS"
+		},
+		{
+			"path": "../sb3-hrl"
+		}
+	],
+	"settings": {}
+}

@@ -1,0 +1,21 @@
+best_params:
+  L_gain_bins: 26
+  L_gain_max: 12.197412930904143
+  L_gain_min: 2.7289241373467785
+  batch_size: 1000
+  eps_margin_bins: 11
+  eps_margin_max: 3.5026936328052423
+  eps_margin_min: 1.7942906409179578
+  k_steepness_bins: 23
+  k_steepness_max: 0.48420274734570334
+  k_steepness_min: 0.0887817255513998
+  learning_rate: 0.000952133429473966
+  max_low_level_policy_steps: 15
+  n_epochs: 20
+best_trial_number: 24
+best_value: 88.07639401999997
+study_name: cpc_hl_fetch
+user_attrs:
+  artifact_dir: out/fetch/hrl/11.b.a/hl_policy_fetch_20.0M/optuna_trials/trial_24
+  best_model_path: out/fetch/hrl/11.b.a/hl_policy_fetch_20.0M/optuna_trials/trial_24/best_model.zip
+  final_model_path: out/fetch/hrl/11.b.a/hl_policy_fetch_20.0M/optuna_trials/trial_24/final_model.zip

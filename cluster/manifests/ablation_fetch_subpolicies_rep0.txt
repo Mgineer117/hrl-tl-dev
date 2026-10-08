@@ -1,0 +1,9 @@
+scripts/ablation/train_all_ltl_subpolicies.py configs/fetch/train/ablation/12.a.a_subpolicy_rep0.yaml
+scripts/ablation/train_all_ltl_subpolicies.py configs/fetch/train/ablation/12.a.a_subpolicy_rep0.yaml
+scripts/ablation/train_all_ltl_subpolicies.py configs/fetch/train/ablation/12.a.a_subpolicy_rep0.yaml
+scripts/ablation/train_all_ltl_subpolicies.py configs/fetch/train/ablation/12.a.a_subpolicy_rep0.yaml
+scripts/ablation/train_all_ltl_subpolicies.py configs/fetch/train/ablation/12.a.a_subpolicy_rep0.yaml
+scripts/ablation/train_all_ltl_subpolicies.py configs/fetch/train/ablation/12.a.a_subpolicy_rep0.yaml
+scripts/ablation/train_all_ltl_subpolicies.py configs/fetch/train/ablation/12.a.a_subpolicy_rep0.yaml
+scripts/ablation/train_all_ltl_subpolicies.py configs/fetch/train/ablation/12.a.a_subpolicy_rep0.yaml
+scripts/ablation/train_all_ltl_subpolicies.py configs/fetch/train/ablation/12.a.a_subpolicy_rep0.yaml

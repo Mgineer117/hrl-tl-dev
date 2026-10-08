@@ -1,0 +1,18 @@
+best_params:
+  batch_size: 4000
+  clip_range: 0.31312536315910544
+  ent_coef: 0.054444066065032326
+  gae_lambda: 0.9013707330363165
+  gamma: 0.9166881636853532
+  learning_rate: 0.0004127196548646566
+  max_grad_norm: 0.5427880318773016
+  max_option_steps: 99
+  n_epochs: 10
+  vf_coef: 0.8714421866064025
+best_trial_number: 6
+best_value: -0.34037568999999995
+study_name: allo_hl_fetch
+user_attrs:
+  artifact_dir: out/fetch/allo/meta/7.l.a/allo_meta_fetch_3.0M/optuna_trials/trial_6
+  best_model_path: out/fetch/allo/meta/7.l.a/allo_meta_fetch_3.0M/optuna_trials/trial_6/best_model.zip
+  final_model_path: out/fetch/allo/meta/7.l.a/allo_meta_fetch_3.0M/optuna_trials/trial_6/final_model.zip

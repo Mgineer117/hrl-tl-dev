@@ -1,0 +1,12 @@
+best_params:
+  batch_size: 2000
+  dense_reward_scale: 8.173488110838028
+  learning_rate: 0.0003527964531462573
+  n_epochs: 40
+best_trial_number: 14
+best_value: -0.01332341
+study_name: gcltl_pr_fetch
+user_attrs:
+  artifact_dir: out/fetch/cpc/pr/5.k.a/cpc_20.0M/optuna_trials/trial_14
+  best_model_path: out/fetch/cpc/pr/5.k.a/cpc_20.0M/optuna_trials/trial_14/best_model.zip
+  final_model_path: out/fetch/cpc/pr/5.k.a/cpc_20.0M/optuna_trials/trial_14/final_model.zip

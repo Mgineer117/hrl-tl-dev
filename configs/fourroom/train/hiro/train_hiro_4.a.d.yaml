@@ -1,0 +1,15 @@
+config_class: hrl_tl.config.train.HiroTrainingConfig
+experiment_id: 4.a.d
+models_dir: out/fourroom/hiro
+model_name: hiro_fourroom
+model_filename: model.pt
+log_dir: log
+tb_dir: tb
+eval_dir: eval
+config_dir: configs/fourroom
+env_config_file: env/hard/full_pos_fix_ag_fix_gl_2_fix_obs.yaml
+algo_config_file: baseline/hiro_5M.yaml
+num_runs: 10
+retrain_model: false
+rendering: false
+verbose: false

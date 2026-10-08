@@ -1,0 +1,15 @@
+spec_rep_class: hrl_tl.wrappers.utils.spec_rep.Lv1MinimalSpecRep
+spec_rep_args:
+  num_clauses: 1
+low_level_policy_class: hrl_tl.wrappers.low_level_policies.gc_ltl.GCLTLLowLevelPolicy
+low_level_policy_args:
+  model_path: out/fr_cont/gcltl/pr/3.e.h/gcltl_10.0M/best_model.zip
+  switch_threshold: 0.95
+  action_sum_coeff: 0.9
+  discrete_state_space: false
+  verbose: false
+max_low_level_policy_steps: 10
+all_formulae_file_path: assets/formulae/fourroom/all_formulae_1_cla_1_max_pred.json
+invalid_tl_action: random
+tl_wrapper_args: configs/fr_cont/gcltl/wrapper/tl_wrapper.yaml
+verbose: false

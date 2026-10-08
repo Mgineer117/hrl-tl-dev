@@ -1,0 +1,45 @@
+algo_config:
+  algorithm: sb3_hrl.ALLO
+  algo_kwargs:
+    representation_dim: 21
+    learning_rate: 0.0000001
+    buffer_size: 1_000_000
+    batch_size: 2048
+    gradient_steps: 1
+    gamma_pairs: 0.9
+    pair_horizon: 50
+    lr_duals: 0.00001
+    dual_momentum: 0.9
+    dual_min: 0
+    dual_max: 100.0
+    lr_barrier_coeff: 0.00001
+    barrier_init: 0.1
+    barrier_min: -100
+    barrier_max: 100
+    use_barrier_for_duals: true
+    grad_clip_norm: 1.0
+    hidden_dims: [256, 256, 256]
+    verbose: 1
+    stats_window_size: 100
+
+learn_config:
+  total_timesteps: 10_000_000
+  progress_bar: true
+
+vec_config:
+  n_envs: 20
+  vec_env_cls: SubprocVecEnv
+  vec_env_kwargs: { "start_method": "spawn" }
+
+callback_config:
+  eval_callback_config:
+    eval_freq: 100_000_000
+    n_eval_episodes: 1
+    log_path: eval
+
+  ckpt_callback_config:
+    save_freq: 5_000_000
+    save_path: ckpts
+    name_prefix: ckpt
+    save_replay_buffer: false
+    verbose: 0

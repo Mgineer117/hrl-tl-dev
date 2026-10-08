@@ -1,0 +1,20 @@
+best_params:
+  batch_size: 4000
+  beta: 0.9842476543901192
+  clip_range: 0.159225817875246
+  ent_coef: auto_0.005
+  goal_reward_scale: 0.425929991442716
+  gradient_steps: 13
+  learning_rate: 0.00021631609360803266
+  state_trans_reward_scale: 78.51717334313057
+  target_entropy: 0.22110003952831092
+  target_update_interval: 18
+  tau: 0.04210000096038772
+  train_freq: 7
+best_trial_number: 14
+best_value: 0.71058023
+study_name: spec_cond_sub_fetch
+user_attrs:
+  artifact_dir: out/fetch/spec_cond/pr/15.a.a/spec_cond_subpolicy_tune_10.0M/optuna_trials/trial_14
+  best_model_path: out/fetch/spec_cond/pr/15.a.a/spec_cond_subpolicy_tune_10.0M/optuna_trials/trial_14/best_model.zip
+  final_model_path: out/fetch/spec_cond/pr/15.a.a/spec_cond_subpolicy_tune_10.0M/optuna_trials/trial_14/final_model.zip

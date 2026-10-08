@@ -1,0 +1,17 @@
+atomic_predicates:
+  - { "name": "psi_ld", "formula": "d_ld < 0.3" }
+  - { "name": "psi_bd", "formula": "d_bd < 0.3" }
+  - { "name": "psi_td", "formula": "d_td < 0.3" }
+  - { "name": "psi_rd", "formula": "d_rd < 0.3" }
+  - { "name": "psi_gl", "formula": "d_gl < 0.3" }
+  - { "name": "psi_lv", "formula": "d_lv < 0.3" }
+  - { "name": "psi_hl", "formula": "d_hl < 0.3" }
+  # - { "name": "psi_blp", "formula": "d_blp < 0.5" }
+  # - { "name": "psi_tlp", "formula": "d_tlp < 0.5" }
+var_value_info_generator_cls: hrl_tl.envs.tl_fourroom.ContRoomsVarValueInfoGenerator
+reward_config:
+  terminal_state_reward: 0.0
+  state_trans_reward_scale: 10
+  dense_reward: true
+  goal_reward_scale: 0.01
+early_termination: true

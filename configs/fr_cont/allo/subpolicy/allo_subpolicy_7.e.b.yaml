@@ -1,0 +1,4 @@
+intrinsic_reward_cls: hrl_tl.wrappers.option.intrinsic_rewards.AlloIntrinsicReward
+intrinsic_reward_args:
+  pipeline_config_path: configs/fr_cont/train/allo/7.d.b_allo_ext.yaml
+termination_condition: null

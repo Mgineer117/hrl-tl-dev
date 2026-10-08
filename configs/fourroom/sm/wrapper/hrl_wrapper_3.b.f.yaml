@@ -1,0 +1,14 @@
+spec_rep_class: hrl_tl.wrappers.utils.spec_rep.Lv1MinimalSpecRep
+spec_rep_args:
+  num_clauses: 1
+low_level_policy_class: hrl_tl.wrappers.low_level_policies.sm.SkillMachinesLowLevelPolicy
+low_level_policy_args:
+  composite_policy_class: hrl_tl.wrappers.low_level_policies.sm.DQNSkillMachinePolicy
+  primitive_pipeline_map_config:
+    prim_spec_map_config_file: configs/fourroom/sm/primitives/primitives_small.yaml
+    pipeline_config_file: configs/fourroom/sm/primitives/3.b.f_primitives.yaml
+max_low_level_policy_steps: 10
+all_formulae_file_path: assets/formulae/fourroom/sm/all_formulae_1_cla_1_max_pred_sm_hard.yaml
+invalid_tl_action: random
+tl_wrapper_args: configs/fourroom/rl/tl_wrapper.yaml
+verbose: false

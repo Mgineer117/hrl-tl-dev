@@ -1,0 +1,15 @@
+best_params:
+  barrier_init: 0.01
+  batch_size: 1000
+  gamma_pairs: 0.9
+  learning_rate: 4.938179325874124e-06
+  lr_barrier_coeff: 1.1984120752480222e-06
+  lr_duals: 9.812690828131419e-05
+  pair_horizon: 50
+best_trial_number: 15
+best_value: 0.16115932074189185
+study_name: allo_pretrain_zone
+user_attrs:
+  artifact_dir: out/zone/allo/ext/7.g.a/allo_ext_10.0M/optuna_trials/trial_15
+  best_model_path: out/zone/allo/ext/7.g.a/allo_ext_10.0M/optuna_trials/trial_15/best_model.zip
+  final_model_path: out/zone/allo/ext/7.g.a/allo_ext_10.0M/optuna_trials/trial_15/final_model.zip

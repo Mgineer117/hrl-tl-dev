@@ -1,0 +1,41 @@
+algo_name: DQN
+
+rl_config:
+  policy: "MultiInputPolicy"
+  learning_rate: 0.0003
+  learning_starts: 0
+  buffer_size: 1_000_000
+  train_freq: 100 # int(batch_size / n_envs) - needs to be calculated
+  batch_size: 1000
+  gamma: 0.99
+  gradient_steps: -1 # -1 means do as many gradient steps as possible in one update
+  target_update_interval: 100
+  exploration_initial_eps: 1.0
+  exploration_fraction: 0.1
+  exploration_final_eps: 0.1
+  stats_window_size: 100
+  policy_kwargs:
+    net_arch: [256, 256]
+  verbose: 1
+
+vec_config:
+  n_envs: 10
+  vec_env_cls_name: stable_baselines3.common.vec_env.SubprocVecEnv
+  wrapper_cls_name: gym_tl_tools.TLObservationReward
+  vec_env_kwargs: { "start_method": "spawn" }
+
+learn_config:
+  total_timesteps: 1_000_000
+  progress_bar: false
+
+eval_callback_config:
+  eval_freq: 1_000
+  n_eval_episodes: 100
+  log_path: eval
+
+ckpt_callback_config:
+  save_freq: 10_000
+  save_path: ckpts
+  name_prefix: ckpt
+  save_replay_buffer: false
+  verbose: 1

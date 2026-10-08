@@ -1,0 +1,16 @@
+algo_name: HIRO
+gpu_id: 0
+timesteps: 3_000_000
+actor_lr: 1e-4
+critic_lr: 1e-3
+eval_freq: 100
+K_epochs: 10
+target_kl: 0.01
+gamma: 0.99
+actor_fc_dims: [256, 256]
+critic_fc_dims: [512, 512]
+num_mini_batches: 8
+mini_batch_size: 512
+batch_size: 4096
+render_fps: 10
+eval_episodes: 100

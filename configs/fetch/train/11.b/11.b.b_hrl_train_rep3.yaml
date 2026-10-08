@@ -1,0 +1,24 @@
+replicate_config:
+  num_replicates: 1
+  replicate_start_id: 0
+  replicate_signature: rep_3
+
+single_pipeline_config:
+  device: 0
+  experiment_id: 11.b.b
+  retrain_model: false
+  save_config:
+    models_dir: out/fetch/ltl_hl
+    model_name: hl_policy_fetch
+    model_filename: final_model.zip
+    best_model_filename: best_model.zip
+    monitor_dir: monitor
+    tb_dir: tb
+    eval_dir: eval
+    eval_metrics_filename: eval.yaml
+    animation_dir: animations
+    animation_ext: gif
+  config_dir: configs/fetch
+  env_config_file: env/fetch_reach_avoid_250.yaml
+  wrapper_config_file: hrl/11.b/11.b.b_hrl_wrapper_rep3.yaml
+  model_config_file: rl/ppo_dict_512_tlhrl_2M_tuned.yaml

@@ -1,0 +1,5 @@
+scripts/ablation/main_tl_hrl_meta_option_pretrained_rep.py configs/fetch/train/ablation/12.b.a_meta_rep0.yaml
+scripts/ablation/main_tl_hrl_meta_option_pretrained_rep.py configs/fetch/train/ablation/12.b.a_meta_rep1.yaml
+scripts/ablation/main_tl_hrl_meta_option_pretrained_rep.py configs/fetch/train/ablation/12.b.a_meta_rep2.yaml
+scripts/ablation/main_tl_hrl_meta_option_pretrained_rep.py configs/fetch/train/ablation/12.b.a_meta_rep3.yaml
+scripts/ablation/main_tl_hrl_meta_option_pretrained_rep.py configs/fetch/train/ablation/12.b.a_meta_rep4.yaml

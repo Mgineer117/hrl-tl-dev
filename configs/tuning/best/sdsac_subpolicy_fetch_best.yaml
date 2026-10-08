@@ -1,0 +1,20 @@
+best_params:
+  batch_size: 2000
+  beta: 0.6044335052833156
+  clip_range: 0.7309127453604845
+  ent_coef: auto_0.005
+  goal_reward_scale: 0.03961024702523734
+  gradient_steps: 34
+  learning_rate: 0.00023162481868345812
+  state_trans_reward_scale: 0.4231816445924929
+  target_entropy: 0.0042409075356035246
+  target_update_interval: 10
+  tau: 0.19344650102583424
+  train_freq: 24
+best_trial_number: 14
+best_value: -0.014758219999999999
+study_name: ablation_sub_fetch
+user_attrs:
+  artifact_dir: out/fetch/ablation/subpolicies/12.a.a/rep_0/subpolicy_fetch_Fpsi_w_and_G!psi_r/optuna_trials/trial_14
+  best_model_path: out/fetch/ablation/subpolicies/12.a.a/rep_0/subpolicy_fetch_Fpsi_w_and_G!psi_r/optuna_trials/trial_14/best_model.zip
+  final_model_path: out/fetch/ablation/subpolicies/12.a.a/rep_0/subpolicy_fetch_Fpsi_w_and_G!psi_r/optuna_trials/trial_14/final_model.zip

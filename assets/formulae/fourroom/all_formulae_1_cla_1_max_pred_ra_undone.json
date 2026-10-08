@@ -1,0 +1,28 @@
+{
+    "predicates": [
+        "psi_ld",
+        "psi_bd",
+        "psi_td",
+        "psi_rd",
+        "psi_gl",
+        "psi_lv",
+        "psi_hl"
+    ],
+    "num_specifications": 14,
+    "specifications": [
+        "Fpsi_lv",
+        "Fpsi_hl",
+        "Fpsi_hl & G!psi_lv",
+        "Fpsi_lv & G!psi_gl",
+        "Fpsi_lv & G!psi_td",
+        "Fpsi_lv & G!psi_ld",
+        "Fpsi_lv & G!psi_bd",
+        "Fpsi_hl & G!psi_gl",
+        "Fpsi_hl & G!psi_td",
+        "Fpsi_hl & G!psi_rd",
+        "Fpsi_hl & G!psi_bd",
+        "Fpsi_lv & G!psi_hl",
+        "Fpsi_hl & G!psi_ld",
+        "Fpsi_lv & G!psi_rd"
+    ]
+}

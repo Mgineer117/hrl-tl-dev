@@ -1,0 +1,13 @@
+config_class: hrl_tl.config.train.SB3BaseTrainingConfig
+experiment_id: "2.b.a"
+gpu_id: 0
+retrain_model: false
+save_config:
+  models_dir: "out/poc/test/2.b"
+  model_name: "fourroom_ppo_test"
+  model_filename: "final_model.zip"
+  monitor_dir: "monitor"
+  tb_dir: "tb"
+config_dir: "configs/fourroom"
+env_config_file: "env/full_fixed.yaml"
+rl_config_file: "rl/ppo_dict.yaml"

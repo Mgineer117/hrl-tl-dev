@@ -1,0 +1,72 @@
+study_name: cpc_pr_nr
+db_filename: cpc_pr_nr.db
+db_dir: db
+total_timesteps: 2000000
+n_trials: 50
+n_startup_trials: 5
+n_evaluations: 5
+n_eval_episodes: 100
+n_jobs: 2
+parallel_backend: process
+launch_dashboard: false
+dashboard_port: 8080
+
+tune_params:
+  - name: batch_size
+    target: algo_kwargs.batch_size
+    suggest_type: categorical
+    choices: [1000, 2000, 4000, 8000]
+
+  - name: target_entropy
+    target: algo_kwargs.target_entropy
+    suggest_type: categorical
+    choices: [0.25, 0.5, 0.75, 1.0, "auto"]
+
+  - name: ent_coef
+    target: algo_kwargs.ent_coef
+    suggest_type: categorical
+    choices: ["auto_0.001", "auto_0.01", "auto_0.1", "auto_1"]
+
+  - name: learning_rate
+    target: algo_kwargs.learning_rate
+    suggest_type: float
+    low: 0.00001
+    high: 0.001
+    log: true
+
+  - name: tau
+    target: algo_kwargs.tau
+    suggest_type: float
+    low: 0.0001
+    high: 0.01
+    log: true
+
+  - name: beta
+    target: algo_kwargs.beta
+    suggest_type: float
+    low: 0.0
+    high: 1.0
+
+  - name: clip_range
+    target: algo_kwargs.clip_range
+    suggest_type: float
+    low: 0.0
+    high: 1.0
+
+  - name: target_update_interval
+    target: algo_kwargs.target_update_interval
+    suggest_type: int
+    low: 1
+    high: 50
+
+  - name: train_freq
+    target: algo_kwargs.train_freq
+    suggest_type: int
+    low: 1
+    high: 50
+
+  - name: gradient_steps
+    target: algo_kwargs.gradient_steps
+    suggest_type: int
+    low: 1
+    high: 50

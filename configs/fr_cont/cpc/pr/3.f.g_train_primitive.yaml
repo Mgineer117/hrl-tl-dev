@@ -1,0 +1,18 @@
+device: 0
+experiment_id: 3.f.g
+retrain_model: false
+save_config:
+  models_dir: out/fr_cont/cpc/pr
+  model_name: cpc
+  model_filname: final_model.zip
+  best_model_filename: best_model.zip
+  monitor_dir: monitor
+  tb_dir: tb
+  eval_dir: eval
+  eval_metrics_filename: eval.yaml
+  animation_dir: animations
+  animation_ext: gif
+config_dir: configs/fr_cont
+env_config_file: env/gauss/full_pos_ang_8_fix_ag_gauss_obj_std_0.7_no_dist_no_term_250_0.35.yaml
+wrapper_config_file: gcltl/wrapper/gc_ltl_dense_oh_0.35.yaml
+model_config_file: cpc/rl/ppo_dict_512_40M.yaml

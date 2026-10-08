@@ -1,0 +1,18 @@
+{
+    "predicates": [
+        "psi_ld",
+        "psi_bd",
+        "psi_td",
+        "psi_rd",
+        "psi_gl",
+        "psi_lv",
+        "psi_hl"
+    ],
+    "num_specifications": 4,
+    "specifications": [
+        "F(psi_bd | psi_gl | psi_hl | psi_ld | psi_lv | psi_rd) & G!psi_td",
+        "F(psi_bd | psi_gl | psi_ld | psi_lv | psi_rd | psi_td) & G!psi_hl",
+        "Fpsi_bd",
+        "Fpsi_gl"
+    ]
+}

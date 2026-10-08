@@ -1,0 +1,18 @@
+spec_rep_class: hrl_tl.wrappers.utils.spec_rep.Lv1MinimalSpecRep
+spec_rep_args:
+  num_clauses: 1
+low_level_policy_class: hrl_tl.wrappers.low_level_policies.spec_cond.SpecCondSubpolicy
+low_level_policy_args:
+  model_path: out/fetch/spec_cond/pr/15.a.b/spec_cond_subpolicy_10.0M/rep_4/best_model.zip
+  all_formulae_file_path: assets/formulae/fetch/cpc/all_formulae_1_cla_1_max_pred.json
+  algo: SDSAC
+  device: cuda:2
+  dict_spec_key: goal_spec
+  spec_rep: one_hot
+  deterministic: true
+max_low_level_policy_steps: 29
+all_formulae_file_path: assets/formulae/fetch/cpc/all_formulae_1_cla_1_max_pred.json
+invalid_tl_action: random
+tl_wrapper_args: configs/fetch/cpc/wrapper/tl_wrapper.yaml
+excluded_obs_keys: ["subtask"]
+verbose: false

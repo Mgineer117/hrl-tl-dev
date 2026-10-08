@@ -1,0 +1,14 @@
+config_class: hrl_tl.config.train.SB3TLHRLTrainingConfig
+experiment_id: 3.a.g
+gpu_id: 2
+retrain_model: false
+save_config:
+  models_dir: "out/fourroom/ltl_hl"
+  model_name: "hl_policy_rand_cleared"
+  model_filename: "final_model.zip"
+  monitor_dir: "monitor"
+  tb_dir: "tb"
+config_dir: "configs/fourroom"
+hrl_wrapper_config_file: "hrl/tl_hrl_wrapper_pretrained_cleared.yaml"
+env_config_file: "env/full_fix_ag_fix_gl_rand_obs_clear_dw.yaml"
+rl_config_file: "rl/ppo_hrl_pos_long.yaml"

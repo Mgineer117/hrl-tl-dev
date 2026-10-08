@@ -1,0 +1,15 @@
+mapping:
+  Fpsi_bd: Fpsi_bd
+  Fpsi_gl: Fpsi_gl
+  Fpsi_hl: Fpsi_hl
+  Fpsi_ld: Fpsi_ld
+  Fpsi_lv: Fpsi_lv
+  Fpsi_rd: Fpsi_rd
+  Fpsi_td: Fpsi_td
+  G!psi_bd: F(psi_gl | psi_hl | psi_ld | psi_lv | psi_rd | psi_td) & G!psi_bd
+  G!psi_gl: F(psi_bd | psi_hl | psi_ld | psi_lv | psi_rd | psi_td) & G!psi_gl
+  G!psi_hl: F(psi_bd | psi_gl | psi_ld | psi_lv | psi_rd | psi_td) & G!psi_hl
+  G!psi_ld: F(psi_bd | psi_gl | psi_hl | psi_lv | psi_rd | psi_td) & G!psi_ld
+  G!psi_lv: F(psi_bd | psi_gl | psi_hl | psi_ld | psi_rd | psi_td) & G!psi_lv
+  G!psi_rd: F(psi_bd | psi_gl | psi_hl | psi_ld | psi_lv | psi_td) & G!psi_rd
+  G!psi_td: F(psi_bd | psi_gl | psi_hl | psi_ld | psi_lv | psi_rd) & G!psi_td

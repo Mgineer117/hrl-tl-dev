@@ -1,0 +1,36 @@
+study_name: hiro_zone
+db_filename: hiro_zone.db
+db_dir: db
+total_timesteps: 1000000
+n_trials: 20
+n_startup_trials: 5
+n_evaluations: 5
+n_eval_episodes: 100
+n_jobs: 1
+parallel_backend: process
+launch_dashboard: false
+dashboard_port: 8080
+
+tune_params:
+  - name: subgoal_freq
+    target: algo_kwargs.subgoal_freq
+    suggest_type: int
+    low: 10
+    high: 100
+
+  - name: batch_size
+    target: algo_kwargs.batch_size
+    suggest_type: categorical
+    choices: [1000, 2000]
+
+  - name: learning_rate
+    target: algo_kwargs.learning_rate
+    suggest_type: float
+    low: 0.00001
+    high: 0.001
+    log: true
+
+  - name: tau
+    target: algo_kwargs.tau
+    suggest_type: categorical
+    choices: [0.005, 0.01, 0.02]

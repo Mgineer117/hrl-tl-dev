@@ -1,0 +1,7 @@
+# Example campaign manifest file
+# Each line contains: <script_path> <config_yaml_path>
+# Blank lines and lines starting with # are ignored.
+
+scripts/cpc/main_tl_hrl_meta_option_fr_cont_rep_sdsac.py configs/fr_cont/train/3.j/3.j.e_hrl_train_rep3.yaml
+scripts/cpc/main_tl_hrl_meta_option_zone_rep_sdsac.py configs/zone/train/8.h/8.h.b_hrl_train_rep0.yaml
+scripts/baseline/main_gcltl_meta_option_fr_cont_rep.py configs/fr_cont/train/5.b/5.b.b_hrl_train_rep4.yaml

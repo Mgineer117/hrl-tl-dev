@@ -1,0 +1,12 @@
+best_params:
+  batch_size: 1000
+  learning_rate: 0.00018388952678602955
+  subgoal_freq: 70
+  tau: 0.005
+best_trial_number: 3
+best_value: -0.53796
+study_name: hiro_zone
+user_attrs:
+  artifact_dir: out/zone/hiro/4.e.a/hiro_zone_15.0M/optuna_trials/trial_3
+  best_model_path: out/zone/hiro/4.e.a/hiro_zone_15.0M/optuna_trials/trial_3/best_model.zip
+  final_model_path: out/zone/hiro/4.e.a/hiro_zone_15.0M/optuna_trials/trial_3/final_model.zip

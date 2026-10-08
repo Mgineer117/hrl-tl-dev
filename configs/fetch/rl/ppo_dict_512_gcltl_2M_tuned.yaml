@@ -1,0 +1,51 @@
+algo_config:
+  algorithm: PPO
+  algo_kwargs:
+    policy: MultiInputPolicy
+    learning_rate: 0.000464
+    n_steps: 50 # int(batch_size / n_envs) - needs to be calculated
+    batch_size: 1000
+    n_epochs: 40
+    gamma: 0.99
+    gae_lambda: 0.95
+    clip_range: 0.2
+    clip_range_vf: null
+    ent_coef: 0.0
+    vf_coef: 0.5
+    max_grad_norm: 0.5
+    use_sde: false
+    sde_sample_freq: -1
+    rollout_buffer_class: null
+    rollout_buffer_kwargs: null
+    target_kl: null
+    stats_window_size: 100
+    policy_kwargs:
+      net_arch: [512, 512, 512]
+    verbose: 1
+
+learn_config:
+  total_timesteps: 2_000_000
+  progress_bar: true
+
+vec_config:
+  n_envs: 20
+  vec_env_cls: SubprocVecEnv
+  vec_env_kwargs: { "start_method": "spawn" }
+
+callback_config:
+  eval_callback_config:
+    eval_freq: 250
+    n_eval_episodes: 100
+    log_path: eval
+
+  ckpt_callback_config:
+    save_freq: 10_000
+    save_path: ckpts
+    name_prefix: ckpt
+    save_replay_buffer: false
+    verbose: 0
+
+  video_recorder_callback_config:
+    render_freq: 10_000
+    save_dir: ckpts
+    name_prefix: video

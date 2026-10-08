@@ -1,0 +1,8 @@
+predicates: [ "psi_y", "psi_r", "psi_b", "psi_w" ]
+num_specifications: 20
+specifications:
+  [
+    # "Fpsi_y",
+    # "Fpsi_y & G!psi_r",
+    "Fpsi_w & G!psi_r",
+  ]

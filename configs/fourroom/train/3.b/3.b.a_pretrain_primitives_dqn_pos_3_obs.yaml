@@ -1,0 +1,13 @@
+config_class: hrl_tl.config.train.SB3LowLevelTrainingConfig
+gpu_id: 0
+retrain_model: false
+save_config:
+  models_dir: "out/fourroom/primitives/pos/dqn"
+  model_name: "fourroom_tl_prim_dqn_pos_3_obs"
+  model_filename: "final_model.zip"
+  monitor_dir: "monitor"
+  tb_dir: "tb"
+config_dir: "configs/fourroom"
+env_config_file: "env/full_rand_ag_tr_gl_rand_obs_clear_dw_no_pen.yaml"
+rl_config_file: "rl/dqn_tl_pos.yaml"
+tl_wrapper_config_file: "rl/tl_wrapper.yaml"

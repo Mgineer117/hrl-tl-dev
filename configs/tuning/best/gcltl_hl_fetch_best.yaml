@@ -1,0 +1,15 @@
+best_params:
+  batch_size: 1000
+  learning_rate: 0.00046420511194275566
+  max_low_level_policy_steps: 16
+  n_epochs: 40
+  switch_threshold_bins: 7
+  switch_threshold_max: 35.37961154372987
+  switch_threshold_min: -45.660572547434974
+best_trial_number: 17
+best_value: 34.63096984
+study_name: gcltl_hl_fetch
+user_attrs:
+  artifact_dir: out/fetch/ltl_hl/5.l.a/hl_policy_fetch_20.0M/optuna_trials/trial_17
+  best_model_path: out/fetch/ltl_hl/5.l.a/hl_policy_fetch_20.0M/optuna_trials/trial_17/best_model.zip
+  final_model_path: out/fetch/ltl_hl/5.l.a/hl_policy_fetch_20.0M/optuna_trials/trial_17/final_model.zip

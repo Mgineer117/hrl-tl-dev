@@ -1,0 +1,16 @@
+spec_rep_class: hrl_tl.wrappers.utils.spec_rep.Lv1MinimalSpecRep
+spec_rep_args:
+  num_clauses: 1
+low_level_policy_class: hrl_tl.wrappers.low_level_policies.sb3.SB3Subpolicy
+low_level_policy_args:
+  config_path: configs/fetch/train/ablation/12.a.a_subpolicy_rep0.yaml
+  device: cuda:0
+  auto_train: false
+max_low_level_policy_steps: 15
+all_formulae_file_path: assets/formulae/fetch/cpc/all_formulae_1_cla_1_max_pred.json
+invalid_tl_action: random
+tl_wrapper_args: configs/fetch/cpc/wrapper/tl_wrapper.yaml
+excluded_obs_keys: ["subtask"]
+reward_type: smdp
+gamma: 0.99
+verbose: false

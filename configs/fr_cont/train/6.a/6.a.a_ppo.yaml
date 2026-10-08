@@ -1,0 +1,23 @@
+replicate_config:
+  num_replicates: 10
+  replicate_start_id: 1
+  replicate_signature: rep_{rep_id}
+
+single_pipeline_config:
+  device: 2
+  experiment_id: 6.a.a
+  retrain_model: false
+  save_config:
+    models_dir: out/fr_cont/ppo
+    model_name: ppo_fr_cont
+    model_filename: final_model.zip
+    best_model_filename: best_model.zip
+    monitor_dir: monitor
+    tb_dir: tb
+    eval_dir: eval
+    eval_metrics_filename: eval.yaml
+    animation_dir: animations
+    animation_ext: gif
+  config_dir: configs/fr_cont
+  env_config_file: env/gauss/full_pos_ang_8_fix_ag_gauss_obj_std_0.7_no_dist_250_0.35.yaml
+  model_config_file: rl/ppo_dict_512_20M.yaml

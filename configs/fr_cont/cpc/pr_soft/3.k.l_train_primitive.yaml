@@ -1,0 +1,83 @@
+device: 0
+experiment_id: 3.k.l
+retrain_model: false
+save_config:
+  models_dir: out/fr_cont/cpc/pr
+  model_name: cpc
+  model_filname: final_model.zip
+  best_model_filename: best_model.zip
+  monitor_dir: monitor
+  tb_dir: tb
+  eval_dir: eval
+  eval_metrics_filename: eval.yaml
+  animation_dir: animations
+  animation_ext: gif
+config_dir: configs/fr_cont
+env_config_file: env/gauss/full_pos_ang_8_rand_ag_gauss_obj_std_0.7_no_dist_no_term_250_0.35.yaml
+wrapper_config_file: gcltl/wrapper/gc_ltl_dense_oh_0.35.yaml
+model_config_file: cpc/rl/sdsac_dict_512_20M_optim.yaml
+optuna_config:
+  storage_url: sqlite:///./db/fr_cont_cpc_pr_optuna.db
+  study_name: sdsac_pr
+  direction: maximize
+  n_trials: 100
+  timeout: null
+  n_jobs: 2
+  n_startup_trials: 5
+  n_warmup_steps: 0
+  n_evaluations: 500
+  n_eval_episodes: 100
+  deterministic_eval: False
+  tune_params:
+    - name: learning_rate
+      suggest_type: float
+      low: 1e-5
+      high: 1e-2
+    - name: learning_starts
+      suggest_type: int
+      low: 1
+      high: 100_000
+      log: true
+    - name: batch_size
+      suggest_type: pow2_int
+      low: 5
+      high: 12
+    - name: tau
+      suggest_type: float
+      low: 1e-3
+      high: 1
+      log: true
+    - name: gamma_eps
+      suggest_type: float
+      low: 1e-4
+      high: 1e-1
+      log: true
+      one_minus: true
+      target: gamma
+    - name: train_freq
+      suggest_type: pow2_int
+      low: 1
+      high: 8
+    - name: gradient_steps
+      suggest_type: pow2_int
+      low: 1
+      high: 8
+    - name: target_update_interval
+      suggest_type: int
+      low: 1
+      high: 1_000
+      log: true
+    - name: target_entropy
+      suggest_type: float
+      low: 0.1
+      high: 2.0
+    - name: beta
+      suggest_type: float
+      low: 0.0
+      high: 1.0
+    - name: clip_range
+      suggest_type: float
+      low: 0.0
+      high: 1.0
+  dashboard:
+    launch: true

@@ -1,0 +1,18 @@
+best_params:
+  batch_size: 1000
+  beta: 0.9827469803636173
+  clip_range: 0.9524750953336532
+  ent_coef: auto_0.001
+  gradient_steps: 42
+  learning_rate: 0.0009449254980057394
+  target_entropy: 0.25
+  target_update_interval: 7
+  tau: 0.00039266543899106116
+  train_freq: 9
+best_trial_number: 42
+best_value: -3.43165829
+study_name: cpc_pr_nr
+user_attrs:
+  artifact_dir: out/nr/cpc/pr/10.a.a/cpc_20.0M/optuna_trials/trial_42
+  best_model_path: out/nr/cpc/pr/10.a.a/cpc_20.0M/optuna_trials/trial_42/best_model.zip
+  final_model_path: out/nr/cpc/pr/10.a.a/cpc_20.0M/optuna_trials/trial_42/final_model.zip

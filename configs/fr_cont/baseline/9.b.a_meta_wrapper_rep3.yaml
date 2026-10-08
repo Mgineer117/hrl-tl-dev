@@ -1,0 +1,13 @@
+max_episode_steps: 250
+option_policy_class: sb3_soft.SDSAC
+option_policy_dir: out/fr_cont/baseline/subpolicies/rep_3
+option_policy_name: best_model
+device: cuda:0
+reward_type: smdp
+gamma: 0.99
+invalid_option_penalty: -1.0
+include_random_option: true
+random_option_termination_steps: 1
+capture_primitive_transitions: null
+max_option_steps: 50
+include_step_count_in_obs: false

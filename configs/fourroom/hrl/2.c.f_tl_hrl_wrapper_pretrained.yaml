@@ -1,0 +1,10 @@
+spec_rep_cls_name: hrl_tl.wrappers.utils.spec_rep.Lv1SimpleSpecRep
+spec_rep_args:
+  num_clauses: 1
+low_level_policy_cls_name: hrl_tl.wrappers.low_level_policies.sb3.SB3LowLevelPolicy
+low_level_policy_args_file_path: configs/fourroom/train/ll_policies/2.c.f_pretrain_tl_ppo_fixed_2_obs.yaml
+max_low_level_policy_steps: 10
+all_formulae_file_path: assets/formulae/fourroom/all_formulae_1_cla_1_max_pred.json
+invalid_tl_action: random
+tl_wrapper_config_file: configs/fourroom/rl/tl_wrapper.yaml
+verbose: false

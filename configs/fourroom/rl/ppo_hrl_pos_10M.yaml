@@ -1,0 +1,44 @@
+algo_name: PPO
+
+rl_config:
+  policy: "MultiInputPolicy"
+  learning_rate: 0.0003
+  n_steps: 100 # int(batch_size / n_envs) - needs to be calculated
+  batch_size: 1000
+  n_epochs: 40
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.2
+  clip_range_vf: null
+  ent_coef: 0.0
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+  use_sde: false
+  sde_sample_freq: -1
+  rollout_buffer_class: null
+  rollout_buffer_kwargs: null
+  target_kl: null
+  stats_window_size: 100
+  policy_kwargs:
+    net_arch: [128, 128]
+  verbose: 1
+
+vec_config:
+  n_envs: 10
+  vec_env_kwargs: { "start_method": "spawn" }
+
+learn_config:
+  total_timesteps: 10_000_000
+  progress_bar: true
+
+eval_callback_config:
+  eval_freq: 1_000
+  n_eval_episodes: 100
+  log_path: eval
+
+ckpt_callback_config:
+  save_freq: 50_000
+  save_path: ckpts
+  name_prefix: ckpt
+  save_replay_buffer: false
+  verbose: 1

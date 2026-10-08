@@ -1,0 +1,16 @@
+config_class: hrl_tl.config.train.SB3LowLevelTrainingConfig
+gpu_id: 1
+retrain_model: false
+save_config:
+  models_dir: out/fourroom/ltl_ll/ll_policies/2.c.d
+  model_name: fourroom_tl_ppo_pos_2_rand_obs_cleared
+  model_filename: final_model.zip
+  monitor_dir: monitor
+  tb_dir: tb
+  eval_dir: eval
+  eval_metrics_filename: final_model_eval.yaml
+  include_extension: false
+config_dir: configs/fourroom
+env_config_file: env/full_rand_ag_tr_gl_2_rand_obs_clear_dw.yaml
+rl_config_file: rl/ppo_tl.yaml
+tl_wrapper_config_file: rl/tl_wrapper.yaml

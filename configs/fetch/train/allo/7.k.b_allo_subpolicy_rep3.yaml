@@ -1,0 +1,19 @@
+pipeline_config:
+  experiment_id: ""
+  device: ""
+  retrain_model: false
+  save_config:
+    models_dir: out/fetch/allo/subpolicies/7.k.b/rep_3
+    model_name: allo_subpolicy_fetch
+    model_filename: final_model.zip
+    best_model_filename: best_model.zip
+    monitor_dir: monitor
+    tb_dir: tb
+    eval_dir: eval
+    eval_metrics_filename: eval.yaml
+    animation_dir: animations
+    animation_ext: gif
+  config_dir: configs/fetch
+  env_config_file: env/fetch_reach_avoid_250_0.005_no_term.yaml
+  wrapper_config_file: allo/subpolicy/allo_subpolicy_7.k.b.yaml
+  model_config_file: rl/allo_subpolicy_ppo_dict_128_1M_tuned.yaml

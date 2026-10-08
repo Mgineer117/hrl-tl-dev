@@ -1,0 +1,84 @@
+study_name: hiro_fetch
+db_filename: hiro_fetch.db
+db_dir: db
+total_timesteps: 1000000
+n_trials: 20
+n_startup_trials: 5
+n_evaluations: 5
+n_eval_episodes: 100
+n_jobs: 1
+parallel_backend: process
+launch_dashboard: false
+dashboard_port: 8080
+
+tune_params:
+  - name: subgoal_freq
+    target: algo_kwargs.subgoal_freq
+    suggest_type: int
+    low: 10
+    high: 100
+
+  - name: batch_size
+    target: algo_kwargs.batch_size
+    suggest_type: categorical
+    choices: [1000, 2000, 4000]
+
+  - name: learning_rate
+    target: algo_kwargs.learning_rate
+    suggest_type: float
+    low: 0.00001
+    high: 0.001
+    log: true
+
+  - name: tau
+    target: algo_kwargs.tau
+    suggest_type: categorical
+    choices: [0.005, 0.01, 0.02]
+
+  - name: gamma
+    target: algo_kwargs.gamma
+    suggest_type: float
+    low: 0.90
+    high: 1.0
+
+  - name: train_freq
+    target: algo_kwargs.train_freq
+    suggest_type: int
+    low: 1
+    high: 50
+
+  - name: gradient_steps
+    target: algo_kwargs.gradient_steps
+    suggest_type: int
+    low: 1
+    high: 50
+
+  - name: manager_exploration_noise
+    target: algo_kwargs.manager_exploration_noise
+    suggest_type: float
+    low: 0.0
+    high: 1.0
+
+  - name: worker_exploration_noise
+    target: algo_kwargs.worker_exploration_noise
+    suggest_type: float
+    low: 0.0
+    high: 1.0
+
+  - name: correction_candidate_count
+    target: algo_kwargs.correction_candidate_count
+    suggest_type: int
+    low: 1
+    high: 10
+
+  - name: correction_noise_scale
+    target: algo_kwargs.correction_noise_scale
+    suggest_type: float
+    low: 0.0
+    high: 1.0
+
+  - name: correction_action_sigma
+    target: algo_kwargs.correction_action_sigma
+    suggest_type: float
+    low: 0.0
+    high: 1.0

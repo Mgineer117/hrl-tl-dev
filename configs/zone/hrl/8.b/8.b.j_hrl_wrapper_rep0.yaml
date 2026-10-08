@@ -1,0 +1,26 @@
+spec_rep_class: hrl_tl.wrappers.utils.spec_rep.CPCParamLv1MinimalSpecRep
+spec_rep_args:
+  num_clauses: 1
+  args:
+    L_gain:
+      range: [ 0.5, 6.5 ]
+      num_discrete_bins: 13
+    k_steepness:
+      range: [ 0.25, 3.0 ]
+      num_discrete_bins: 12
+    eps_margin:
+      range: [ 0.5, 3.0 ]
+      num_discrete_bins: 6
+low_level_policy_class: hrl_tl.wrappers.low_level_policies.cpc.CPCLowLevelPolicy
+low_level_policy_args:
+  model_path: out/zone/cpc/pr/8.a.d/cpc_40.0M/rep_0/best_model.zip
+  var_value_info_generator_cls: hrl_tl.envs.tl_zone.ZoneVarValueInfoGenerator
+  device: cuda:1
+  goal_rep: one_hot
+  verbose: false
+max_low_level_policy_steps: 10
+all_formulae_file_path: assets/formulae/zone/cpc/all_formulae_1_cla_1_max_pred_core.json
+invalid_tl_action: random
+tl_wrapper_args: configs/zone/cpc/wrapper/tl_wrapper_0.5.yaml
+excluded_obs_keys: ["subtask"]
+verbose: false

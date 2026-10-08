@@ -1,0 +1,9 @@
+predicates:
+  - { "name": "psi_y", "formula": "d_y < 0.03", num_entities: 2 }
+  - { "name": "psi_r", "formula": "d_r < 0.03", num_entities: 3 }
+  - { "name": "psi_w", "formula": "d_w < 0.03", num_entities: 1 }
+var_value_info_generator_cls: hrl_tl.envs.fetch.var_value.FetchVarValueInfoGenerator
+early_termination: true
+reward_type: dense
+dense_reward_scale: 8.173
+goal_rep: one_hot

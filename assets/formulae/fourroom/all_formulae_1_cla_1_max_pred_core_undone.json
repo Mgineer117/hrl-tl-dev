@@ -1,0 +1,13 @@
+{
+    "predicates": [
+        "psi_ld",
+        "psi_bd",
+        "psi_td",
+        "psi_rd",
+        "psi_gl",
+        "psi_lv",
+        "psi_hl"
+    ],
+    "num_specifications": 0,
+    "specifications": []
+}

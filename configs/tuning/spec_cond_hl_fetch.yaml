@@ -1,0 +1,52 @@
+study_name: spec_cond_hl_fetch
+db_filename: spec_cond_hl_fetch.db
+db_dir: db
+total_timesteps: 500000
+n_trials: 20
+n_startup_trials: 5
+n_evaluations: 5
+n_eval_episodes: 100
+n_jobs: 1
+parallel_backend: process
+launch_dashboard: false
+dashboard_port: 8080
+
+tune_params:
+  - name: max_low_level_policy_steps
+    target: wrapper_kwargs.max_low_level_policy_steps
+    suggest_type: int
+    low: 10
+    high: 50
+
+  - name: batch_size
+    target: algo_kwargs.batch_size
+    suggest_type: int
+    low: 1000
+    high: 4000
+    step: 1000
+
+  - name: learning_rate
+    target: algo_kwargs.learning_rate
+    suggest_type: float
+    low: 0.00001
+    high: 0.001
+    log: true
+
+  - name: n_epochs
+    target: algo_kwargs.n_epochs
+    suggest_type: int
+    low: 10
+    high: 40
+    step: 10
+
+  - name: clip_range
+    target: algo_kwargs.clip_range
+    suggest_type: float
+    low: 0.1
+    high: 0.3
+
+  - name: ent_coef
+    target: algo_kwargs.ent_coef
+    suggest_type: float
+    low: 0.0
+    high: 0.02

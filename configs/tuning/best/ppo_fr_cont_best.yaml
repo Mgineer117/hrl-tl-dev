@@ -1,0 +1,11 @@
+best_params:
+  batch_size: 2000
+  learning_rate: 0.0002607383861860383
+  n_epochs: 20
+best_trial_number: 17
+best_value: -0.51582
+study_name: ppo_fr_cont
+user_attrs:
+  artifact_dir: out/fr_cont/ppo/6.d.a/ppo_fr_cont_20.0M/optuna_trials/trial_17
+  best_model_path: out/fr_cont/ppo/6.d.a/ppo_fr_cont_20.0M/optuna_trials/trial_17/best_model.zip
+  final_model_path: out/fr_cont/ppo/6.d.a/ppo_fr_cont_20.0M/optuna_trials/trial_17/final_model.zip

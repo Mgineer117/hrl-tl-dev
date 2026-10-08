@@ -1,0 +1,17 @@
+best_params:
+  batch_size: 4000
+  clip_range: 0.32712074653098755
+  ent_coef: 0.05186715377785735
+  gae_lambda: 0.9139832206823876
+  gamma: 0.9620657934226639
+  learning_rate: 0.00047889259123093386
+  max_grad_norm: 0.13268142306408476
+  n_epochs: 10
+  vf_coef: 0.9770828602519578
+best_trial_number: 0
+best_value: -0.5
+study_name: ppo_fetch
+user_attrs:
+  artifact_dir: out/fetch/ppo/6.f.a/ppo_fetch_12.0M/optuna_trials/trial_0
+  best_model_path: out/fetch/ppo/6.f.a/ppo_fetch_12.0M/optuna_trials/trial_0/best_model.zip
+  final_model_path: out/fetch/ppo/6.f.a/ppo_fetch_12.0M/optuna_trials/trial_0/final_model.zip

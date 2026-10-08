@@ -1,0 +1,19 @@
+pipeline_config:
+  experiment_id: 9.a.a
+  device: ""
+  retrain_model: false
+  save_config:
+    models_dir: out/fr_cont/baseline/subpolicies/rep_4
+    model_name: subpolicy_fr_cont
+    model_filename: final_model.zip
+    best_model_filename: best_model.zip
+    monitor_dir: monitor
+    tb_dir: tb
+    eval_dir: eval
+    eval_metrics_filename: eval.yaml
+    animation_dir: animations
+    animation_ext: gif
+  config_dir: configs/fr_cont
+  env_config_file: env/gauss/full_pos_ang_8_rand_ag_gauss_obj_std_0.6_no_dist_no_term_250_0.35.yaml
+  wrapper_config_file: gcltl/wrapper/tl_wrapper_0.35.yaml
+  model_config_file: rl/sdsac_dict_512_10M_ent0.75.yaml

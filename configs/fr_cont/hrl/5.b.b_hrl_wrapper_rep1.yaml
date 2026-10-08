@@ -1,0 +1,20 @@
+spec_rep_class: hrl_tl.wrappers.utils.spec_rep.ParamLv1MinimalSpecRep
+spec_rep_args:
+  num_clauses: 1
+  args:
+    fixed_action_sum_coeff: true
+    switch_threshold: {"range": [-10, 10], "num_discrete_bins": 21}
+low_level_policy_class: hrl_tl.wrappers.low_level_policies.gc_ltl.GCLTLLowLevelPolicy
+low_level_policy_args:
+  model_path: out/fr_cont/cpc/pr/3.f.h/cpc_20.0M/rep_1/best_model.zip
+  discrete_state_space: false
+  action_mode_cls: contgrid.core.action.DiscreteAng
+  action_mode_args:
+    num_directions: 8
+  device: cuda:1
+  verbose: false
+max_low_level_policy_steps: 10
+all_formulae_file_path: assets/formulae/fourroom/all_formulae_1_cla_1_max_pred.json
+invalid_tl_action: random
+tl_wrapper_args: configs/fr_cont/gcltl/wrapper/tl_wrapper_0.35.yaml
+verbose: false

@@ -1,0 +1,17 @@
+device: 0
+retrain_model: false
+save_config:
+  models_dir: out/fr_cont/gcltl/pr/3.e.o/eval_cpc
+  model_name: gcltl
+  model_filname: final_model.zip
+  best_model_filename: best_model.zip
+  monitor_dir: monitor
+  tb_dir: tb
+  eval_dir: eval_cpc
+  eval_metrics_filename: eval.yaml
+  animation_dir: animations
+  animation_ext: gif
+config_dir: configs/fr_cont
+env_config_file: env/eval/full_pos_ang_16_vel_5_fix_ag_fix_obj_v4_no_term_500_0.4.yaml
+wrapper_config_file: gcltl/wrapper/tl_wrapper_0.4.yaml
+model_config_file: gcltl/rl/ppo_dict_512_5M.yaml

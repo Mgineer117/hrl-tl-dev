@@ -1,0 +1,21 @@
+predicates:
+  - { "name": "psi_tl_tc", "formula": "d_tl_tc < 0.35", num_entities: 1 }
+  - { "name": "psi_tc_tr", "formula": "d_tc_tr < 0.35", num_entities: 1 }
+  - { "name": "psi_ml_mc", "formula": "d_ml_mc < 0.35", num_entities: 1 }
+  - { "name": "psi_mc_mr", "formula": "d_mc_mr < 0.35", num_entities: 1 }
+  - { "name": "psi_bl_bc", "formula": "d_bl_bc < 0.35", num_entities: 1 }
+  - { "name": "psi_bc_br", "formula": "d_bc_br < 0.35", num_entities: 1 }
+  - { "name": "psi_tl_ml", "formula": "d_tl_ml < 0.35", num_entities: 1 }
+  - { "name": "psi_tc_mc", "formula": "d_tc_mc < 0.35", num_entities: 1 }
+  - { "name": "psi_tr_mr", "formula": "d_tr_mr < 0.35", num_entities: 1 }
+  - { "name": "psi_ml_bl", "formula": "d_ml_bl < 0.35", num_entities: 1 }
+  - { "name": "psi_mc_bc", "formula": "d_mc_bc < 0.35", num_entities: 1 }
+  - { "name": "psi_mr_br", "formula": "d_mr_br < 0.35", num_entities: 1 }
+  - { "name": "psi_gl", "formula": "d_gl < 0.35", num_entities: 1 }
+  - { "name": "psi_lv", "formula": "d_lv < 0.35", num_entities: 18 }
+  - { "name": "psi_hl", "formula": "d_hl < 0.35", num_entities: 18 }
+var_value_info_generator_cls: hrl_tl.envs.tl_nineroom.NineRoomsVarValueInfoGenerator
+early_termination: true
+reward_type: dense
+dense_reward_scale: 100.0
+goal_rep: one_hot

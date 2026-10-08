@@ -1,0 +1,13 @@
+gpu_id: 3
+retrain_model: false
+save_config:
+  models_dir: out/fourroom/primitives/3.b.f
+  model_name: fourroom_tl_prim_dqn_tensor_2_obs
+  model_filename: final_model.zip
+  monitor_dir: monitor
+  tb_dir: tb
+  include_suffix_in_filename: false
+config_dir: configs/fourroom
+env_config_file: env/hard/full_tensor_rand_ag_fix_gl_2_fix_obs_no_term.yaml
+model_config_file: sm/rl/dqn_tensor_tl.yaml
+wrapper_config_file: sm/wrapper/tl_wrapper_sm.yaml

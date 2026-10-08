@@ -1,0 +1,12 @@
+best_params:
+  batch_size: 1000
+  learning_rate: 0.0008980228779746396
+  max_option_steps: 89
+  n_epochs: 20
+best_trial_number: 16
+best_value: -0.5645847900000001
+study_name: allo_hl_fr_cont
+user_attrs:
+  artifact_dir: out/fr_cont/allo/meta/7.f.a/allo_meta_fr_cont_6.0M/optuna_trials/trial_16
+  best_model_path: out/fr_cont/allo/meta/7.f.a/allo_meta_fr_cont_6.0M/optuna_trials/trial_16/best_model.zip
+  final_model_path: out/fr_cont/allo/meta/7.f.a/allo_meta_fr_cont_6.0M/optuna_trials/trial_16/final_model.zip

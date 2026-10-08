@@ -1,0 +1,15 @@
+{
+  "predicates": ["psi_y", "psi_r", "psi_w"],
+  "num_specifications": 9,
+  "specifications": [
+    "Fpsi_y",
+    "Fpsi_r",
+    "Fpsi_w",
+    "Fpsi_y & G!psi_r",
+    "Fpsi_y & G!psi_w",
+    "Fpsi_r & G!psi_y",
+    "Fpsi_r & G!psi_w",
+    "Fpsi_w & G!psi_y",
+    "Fpsi_w & G!psi_r"
+  ]
+}

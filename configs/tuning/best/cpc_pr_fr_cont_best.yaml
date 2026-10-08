@@ -1,0 +1,13 @@
+best_params:
+  batch_size: 1000
+  learning_rate: 0.0005830844904851547
+  target_entropy: 0.25
+  target_update_interval: 1
+  tau: 0.02
+best_trial_number: 23
+best_value: -0.70111211
+study_name: cpc_pr_fr_cont
+user_attrs:
+  artifact_dir: out/fr_cont/cpc/pr/3.l.a/cpc_20.0M/optuna_trials/trial_23
+  best_model_path: out/fr_cont/cpc/pr/3.l.a/cpc_20.0M/optuna_trials/trial_23/best_model.zip
+  final_model_path: out/fr_cont/cpc/pr/3.l.a/cpc_20.0M/optuna_trials/trial_23/final_model.zip

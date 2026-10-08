@@ -1,0 +1,23 @@
+spec_rep_class: hrl_tl.wrappers.utils.spec_rep.ParamLv1MinimalSpecRep
+spec_rep_args:
+  num_clauses: 1
+  args:
+    fixed_action_sum_coeff: true
+    switch_threshold: {"range": [-20, 0], "num_discrete_bins": 21}
+low_level_policy_class: hrl_tl.wrappers.low_level_policies.gc_ltl.GCLTLLowLevelPolicy
+low_level_policy_args:
+  model_path: out/zone/cpc/pr/5.c.d/cpc_40.0M/rep_0/best_model.zip
+  discrete_state_space: false
+  action_mode_cls: contgrid.core.action.DiscreteAngDirectional
+  action_mode_args:
+    num_directions: 8
+    num_vel_discrete: 5
+    min_vel: 1.0
+  device: cuda:1
+  verbose: false
+max_low_level_policy_steps: 10
+all_formulae_file_path: assets/formulae/zone/cpc/all_formulae_1_cla_1_max_pred_core.json
+invalid_tl_action: random
+tl_wrapper_args: configs/zone/cpc/wrapper/tl_wrapper_0.5.yaml
+excluded_obs_keys: ["subtask"]
+verbose: false

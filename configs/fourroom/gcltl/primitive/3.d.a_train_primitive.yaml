@@ -1,0 +1,18 @@
+device: 3
+experiment_id: 3.d.a
+retrain_model: false
+save_config:
+  models_dir: out/fourroom/gcltl/pr
+  model_name: gcltl
+  model_filname: final_model.zip
+  best_model_filename: best_model.zip
+  monitor_dir: monitor
+  tb_dir: tb
+  eval_dir: eval
+  eval_metrics_filename: eval.yaml
+  animation_dir: animations
+  animation_ext: gif
+config_dir: configs/fourroom
+env_config_file: env/hard/full_tensor_rand_ag_fix_gl_2_fix_obs_no_term.yaml
+wrapper_config_file: gcltl/wrapper/gc_ltl.yaml
+model_config_file: gcltl/rl/ppo_dict_128_1M.yaml
