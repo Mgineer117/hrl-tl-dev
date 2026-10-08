@@ -25,7 +25,8 @@ trained with that state; position and zone visits come from the corrected
 Qualisys pose.
 
 Each primitive has a **5-second slot** (`robot.motion.motion_timeout` in
-`configs/arena.json`). The controller turns toward the waypoint before driving
+each `configs/robot_demo/arenas/seed_*.json`). The controller turns toward the
+waypoint before driving
 forward, stops at the target, then publishes zero velocity for the rest of the
 slot. At the deadline, an unfinished command stops and the policy replans from
 the next fresh measured pose. Stale mocap also stops the current command and
@@ -37,19 +38,18 @@ actual wall, robot size, tracking error, and braking distance.
 ## Installation and lab run order (ROS domain 40)
 
 Use an Ubuntu 24.04 / ROS 2 Jazzy laptop with network access to QTM and the
-Burger. Clone this repo alone. Before any motion, calibrate
-[configs/arena.json](../../configs/arena.json) to the measured lab: `robot.frame`,
-`robot.bounds`, `robot.ros.heading_offset_rad`, motion limits, and the zone
-positions in both `environment.scenario_config.spawn_config` and `zones`. The
-default seed 383 layout is an example lab placement, not a measured placement.
+Burger. Clone this repo alone. Choose `--seed=0`, `295`, or `383` for every
+`run.py` command. The layouts are examples; match the selected seed's walls,
+zones, and start in the lab before motion. The three arena files are in
+[configs/robot_demo/arenas](../../configs/robot_demo/arenas).
+The shared policy wrapper is [configs/robot_demo/wrapper.yaml](../../configs/robot_demo/wrapper.yaml).
 This procedure assumes `192.168.0.77` is the Burger carrying the `tb3_1` marker.
 
-The configured origin correction is
-`robot.ros.mocap_offset_x_m: 2.4024065301749555` and
-`mocap_offset_y_m: 0.0026774756940504824`, calibrated from 120 stationary
-Qualisys samples with the robot reference point physically at arena-world
-`(0, 0)`. The calibration retains the marker displacement correction and heading
-settings; its samples are saved in `artifacts/mocap_origin_calibration.json`.
+The bundled origin correction is a previous lab measurement. Recompute it
+with `scripts/robot_demo/calibrate_mocap.py` while the robot reference point is
+stationary at arena-world `(0, 0)` m. The script reads 120 fresh Qualisys poses
+and updates `mocap_offset_x_m` and `mocap_offset_y_m` in all three arena files.
+It preserves the heading and marker displacement corrections.
 `heading_offset_rad` is set to `1.57079632679` (+90°). The turning trace is
 consistent with that yaw correction and shows the tracked marker moving on a
 circle about 1.8 cm from the robot's turn center; `marker_offset_x_m` and
@@ -67,8 +67,8 @@ by `mocap_rotation_rad + heading_offset_rad`.
 
 Preflight, `run`, and `move` apply the saved static mocap calibration to every
 pose. Each physical run starts policy inference from the measured robot
-position. The configured arena start is used for offline simulation. The
-automatic translation from the first pose to that start has been removed.
+position. Calibrate at world `(0, 0)` first, then move the robot to the selected
+seed's start before running the policy.
 
 ### 1. Install from a fresh clone (once)
 
@@ -84,7 +84,7 @@ git clone https://github.com/Mgineer117/hrl-tl-dev.git
 cd hrl-tl-dev
 python -m pip install -e .
 python -c 'import rclpy, geometry_msgs.msg, sensor_msgs.msg, std_msgs.msg, qtm_rt, spot, contgrid; print("imports OK")'
-python run.py check
+python run.py check --seed=383
 ```
 
 Stop here unless the import check and offline policy check pass. `check` prints
@@ -128,7 +128,7 @@ python scripts/robot_demo/mocap.py --ip=128.174.245.64 --marker=tb3_1
 Leave this terminal running. The script publishes only advancing QTM frames on
 `/qualysis/tb3_1`.
 
-### 4. Verify, then command one action (new laptop terminal)
+### 4. Calibrate, verify, then command one action (new laptop terminal)
 
 ```bash
 conda activate hrl-zone
@@ -141,11 +141,17 @@ ros2 topic type /qualysis/tb3_1
 ros2 topic echo /qualysis/tb3_1 --once
 ros2 topic type /cmd_vel
 ros2 topic info /cmd_vel --verbose
-python run.py preflight --robot_ip=192.168.0.77
-python run.py move --angle_deg=90 --distance_m=0.01524
+python scripts/robot_demo/calibrate_mocap.py
+python run.py preflight --seed=383 --robot_ip=192.168.0.77
+python run.py move --seed=383 --angle_deg=90 --distance_m=0.01524
 ```
 
-The list must include `/qualysis/tb3_1` and `/cmd_vel`; the raw pose must be
+For calibration, place the robot's reference point at the arena-world origin
+`(0, 0)` m and keep it still. Robot yaw may be arbitrary. The script computes
+one translation from the fresh poses and writes it to all three seed files.
+Then move the robot to your selected seed's saved start, facing arena +x,
+before `preflight`, `move`, or `run`. The list must include `/qualysis/tb3_1`
+and `/cmd_vel`; the raw pose must be
 fresh, in metres, and in frame `mocap`. The included physical arena expects
 `geometry_msgs/msg/TwistStamped` on `/cmd_vel`; preflight checks the actual
 topic type and subscriber before motion. Confirm that the `/cmd_vel` subscriber
@@ -168,7 +174,7 @@ After checking the measured heading, path, and stop behavior from that action,
 run the episode in the same terminal:
 
 ```bash
-python run.py run --robot_ip=192.168.0.77 --smoothing=none
+python run.py run --seed=383 --robot_ip=192.168.0.77 --smoothing=none
 ```
 
 `run` defaults to `--smoothing=none`. EMA and Butterworth are available as
@@ -276,18 +282,15 @@ stops that action and replans from the next fresh Qualisys pose.
 Physical robot execution with smoothing:
 
 ```bash
-python run.py run --robot_ip=192.168.0.77 --smoothing=butterworth
+python run.py run --seed=383 --robot_ip=192.168.0.77 --smoothing=butterworth
 ```
 
 ## Seed 383 arena and offline trajectory
 
-The default [physical arena](../../configs/arena.json) and
-[offline arena](../../configs/robot_demo/arenas/seed_383.json) use the same fixed seed
-383 task, start, zones, and walls. The physical arena retains the measured
-Qualisys transform, 0.02 m/s minimum drive speed, and the previously accepted
-0.01 m target tolerance. The offline arena uses an identity Mocap transform and
-the guide's 0.003048 m target tolerance. All included arenas use a 5 s action
-slot.
+The [seed 383 arena](../../configs/robot_demo/arenas/seed_383.json) stores the
+task, start, zones, walls, and robot settings. All three seed arenas use the
+same physical robot settings and a 5 s action slot. Recalibrate the Qualisys
+translation for the current lab before a physical run.
 For a live run, place the robot at the listed world start facing +x;
 `run.py run` reads its actual Qualisys pose and does not move it to the saved
 start automatically.

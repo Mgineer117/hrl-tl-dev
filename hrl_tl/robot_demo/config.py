@@ -125,7 +125,7 @@ class DemoConfig(Settings):
         0.21,
     )
 
-    # Existing arena.json files include these values in their identity hash.
+    # Existing arena snapshots include these values in their identity hash.
     actions: tuple[tuple[pydantic.StrictInt, pydantic.StrictInt], ...] = (
         (0, 3),
         (2, 3),

@@ -44,7 +44,7 @@ flags.DEFINE_string(
 )
 flags.DEFINE_string(
     "wrapper_config",
-    "configs/wrapper.yaml",
+    "configs/robot_demo/wrapper.yaml",
     "Path to wrapper YAML configuration.",
 )
 flags.DEFINE_string(

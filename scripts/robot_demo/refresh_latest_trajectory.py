@@ -28,10 +28,10 @@ flags.DEFINE_string(
 flags.DEFINE_string(
     "logs_dir", "logs", "Path to logs directory containing robot runs."
 )
-flags.DEFINE_string("arena", "configs/arena.json", "Path to arena layout JSON.")
+flags.DEFINE_integer("seed", None, "Arena seed: 0, 295, or 383 (required).")
 flags.DEFINE_string(
     "wrapper_config",
-    "configs/wrapper.yaml",
+    "configs/robot_demo/wrapper.yaml",
     "Path to wrapper YAML configuration.",
 )
 flags.DEFINE_string(
@@ -152,12 +152,14 @@ def main(argv: collections.abc.Sequence[str]) -> None:
     """CLI entry point for refreshing the latest trajectory."""
     if len(argv) > 1:
         raise app.UsageError("Too many command-line arguments.")
+    if FLAGS.seed not in (0, 295, 383):
+        raise app.UsageError("Set --seed to 0, 295, or 383.")
 
     logs_dir = Path(FLAGS.logs_dir).resolve()
     folder = latest_run(logs_dir, FLAGS.run_id)
     run_record = read_run(folder)
 
-    arena_path = Path(FLAGS.arena).resolve()
+    arena_path = Path(f"configs/robot_demo/arenas/seed_{FLAGS.seed}.json").resolve()
     layout = arena.load(arena_path)
     if run_record.first_policy[
         "arena_id"

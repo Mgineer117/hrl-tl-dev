@@ -31,9 +31,7 @@ flags.DEFINE_enum(
     ["check", "preflight", "move", "run"],
     "Execution mode.",
 )
-flags.DEFINE_string(
-    "arena", "configs/arena.json", "Path to arena layout JSON specification."
-)
+flags.DEFINE_integer("seed", None, "Arena seed: 0, 295, or 383 (required).")
 flags.DEFINE_integer(
     "max_actions",
     250,
@@ -55,7 +53,7 @@ flags.DEFINE_float(
 )
 flags.DEFINE_string(
     "wrapper_config",
-    "configs/wrapper.yaml",
+    "configs/robot_demo/wrapper.yaml",
     "Path to wrapper YAML configuration.",
 )
 flags.DEFINE_string(
@@ -105,6 +103,8 @@ def _resolve_mode(
 def main(argv: collections.abc.Sequence[str]) -> None:
     """CLI entry point for TurtleBot3 robot demo execution."""
     mode = _resolve_mode(argv)
+    if FLAGS.seed not in (0, 295, 383):
+        raise app.UsageError("Set --seed to 0, 295, or 383.")
     if mode == "move":
         if FLAGS.angle_deg is None or FLAGS.distance_m is None:
             raise app.UsageError(
@@ -129,7 +129,7 @@ def main(argv: collections.abc.Sequence[str]) -> None:
             "Set ROS_DOMAIN_ID=40 before connecting to the robot."
         )
 
-    arena_path = Path(FLAGS.arena).resolve()
+    arena_path = Path(f"configs/robot_demo/arenas/seed_{FLAGS.seed}.json").resolve()
     layout = arena.load(arena_path)
 
     manual_movement = None
