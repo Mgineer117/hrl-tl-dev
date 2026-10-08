@@ -9,6 +9,7 @@ uv sync --all
 ```
 ## Documentation
 - [Hyperparameter Tuning & Replicate Evaluation](docs/tuning.md): How to run, configure, monitor, and evaluate hyperparameter optimization studies with Optuna and `rl-pipeline`.
+- [TurtleBot3 / Qualisys lab experiment](scripts/robot_demo/README.md): Bundled checkpoints, calibrated seed 383 arena, installation, and run order.
 
 ## Contribution
 Refer to the [contribution guide](CONTRIBUTING.md) for details on how to contribute to this project.

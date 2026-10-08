@@ -12,7 +12,7 @@ state. Keep them zipped: `run.py` loads the meta policy with
 `PrimitiveStepPPO.load(...)` and the configured primitive policy with
 `SDSAC.load(...)`.
 
-`mocap.py` connects to QTM at `128.174.245.64` by default and publishes the
+`scripts/robot_demo/mocap.py` connects to QTM at `128.174.245.64` by default and publishes the
 `tb3_1` rigid body on `/qualysis/tb3_1` (`PoseStamped`, metres, yaw in
 `orientation.z`, frame `mocap`). `run.py` checks that `192.168.0.77` accepts
 SSH, a fresh mocap pose arrives, and `/cmd_vel` has a subscriber of the
@@ -24,7 +24,7 @@ The native ContGrid velocity state is retained because the checkpoint was
 trained with that state; position and zone visits come from the corrected
 Qualisys pose.
 
-Each primitive has a **5-second slot** (`robot.motion.motion_timeout` in
+Each primitive has a **10-second slot** (`robot.motion.motion_timeout` in
 `configs/arena.json`). The controller turns toward the waypoint before driving
 forward, stops at the target, then publishes zero velocity for the rest of the
 slot. At the deadline, an unfinished command stops and the policy replans from
@@ -38,7 +38,7 @@ actual wall, robot size, tracking error, and braking distance.
 
 Use an Ubuntu 24.04 / ROS 2 Jazzy laptop with network access to QTM and the
 Burger. Clone this repo alone. Before any motion, calibrate
-[configs/arena.json](configs/arena.json) to the measured lab: `robot.frame`,
+[configs/arena.json](../../configs/arena.json) to the measured lab: `robot.frame`,
 `robot.bounds`, `robot.ros.heading_offset_rad`, motion limits, and the zone
 positions in both `environment.scenario_config.spawn_config` and `zones`. The
 default seed 383 layout is an example lab placement, not a measured placement.
@@ -76,13 +76,13 @@ If `hrl-zone` does not exist on the Ubuntu laptop, create it first with
 `conda create -n hrl-zone python=3.12 -y`.
 
 ```bash
-source /opt/ros/jazzy/setup.bash
 conda activate hrl-zone
+source /opt/ros/jazzy/setup.bash
 export ROS_DOMAIN_ID=40
 export ROS_AUTOMATIC_DISCOVERY_RANGE=SUBNET
-git clone https://github.com/Mgineer117/hrl-tl-turtlebot.git
-cd hrl-tl-turtlebot
-python -m pip install -r requirements.txt
+git clone https://github.com/Mgineer117/hrl-tl-dev.git
+cd hrl-tl-dev
+python -m pip install -e .
 python -c 'import rclpy, geometry_msgs.msg, sensor_msgs.msg, std_msgs.msg, qtm_rt, spot, contgrid; print("imports OK")'
 python run.py check
 ```
@@ -92,11 +92,9 @@ an observation, meta option, primitive action, and waypoint from the configured
 example start; it does not use live QTM. On macOS, only the offline `check` is
 supported; the motion run requires the Ubuntu ROS computer.
 
-`requirements.txt` installs this repo's `hrl_tl` package via `-e .`, which also
-installs PyTorch (`torch`) and Stable-Baselines3 (`stable-baselines3[extra]`)
-from `pyproject.toml`, plus the Qualisys SDK. Install ROS 2 Jazzy separately;
-`rclpy`, `geometry_msgs`, `sensor_msgs`, and `std_msgs` come from ROS and must
-be importable by the selected Conda Python.
+`pyproject.toml` lists the Python dependencies, including PyTorch,
+Stable-Baselines3, Qualisys, and ROS Python bindings. Install and source ROS 2
+Jazzy separately, then verify that the selected Conda Python imports `rclpy`.
 
 ### 2. Start the robot driver (robot terminal)
 
@@ -119,12 +117,12 @@ follows `mrs2025-main`.
 Start QTM with rigid body `tb3_1`, then run:
 
 ```bash
-source /opt/ros/jazzy/setup.bash
 conda activate hrl-zone
+source /opt/ros/jazzy/setup.bash
 export ROS_DOMAIN_ID=40
 export ROS_AUTOMATIC_DISCOVERY_RANGE=SUBNET
-cd /path/to/hrl-tl-turtlebot
-python mocap.py --ip=128.174.245.64 --marker=tb3_1
+cd /path/to/hrl-tl-dev
+python scripts/robot_demo/mocap.py --ip=128.174.245.64 --marker=tb3_1
 ```
 
 Leave this terminal running. The script publishes only advancing QTM frames on
@@ -133,18 +131,18 @@ Leave this terminal running. The script publishes only advancing QTM frames on
 ### 4. Verify, then command one action (new laptop terminal)
 
 ```bash
-source /opt/ros/jazzy/setup.bash
 conda activate hrl-zone
+source /opt/ros/jazzy/setup.bash
 export ROS_DOMAIN_ID=40
 export ROS_AUTOMATIC_DISCOVERY_RANGE=SUBNET
-cd /path/to/hrl-tl-turtlebot
+cd /path/to/hrl-tl-dev
 ros2 topic list
 ros2 topic type /qualysis/tb3_1
 ros2 topic echo /qualysis/tb3_1 --once
 ros2 topic type /cmd_vel
 ros2 topic info /cmd_vel --verbose
-python run.py preflight --robot-ip=192.168.0.77
-python run.py move --angle-deg=90 --distance-m=0.015
+python run.py preflight --robot_ip=192.168.0.77
+python run.py move --angle_deg=90 --distance_m=0.01524
 ```
 
 The list must include `/qualysis/tb3_1` and `/cmd_vel`; the raw pose must be
@@ -161,7 +159,7 @@ the same `MovementAction` interpreter and feedback controller as policy actions.
 The angle is a Zone-frame direction from +x, in 45° increments; it is not
 relative to the robot's current yaw. Distance must match one of
 `robot.step_lengths_sim / robot.frame.sim_units_per_meter` within 1 mm. For the
-included arena, `--angle-deg=90 --distance-m=0.064` means direction index 2 and
+included arena, `--angle_deg=90 --distance_m=0.064` means direction index 2 and
 magnitude index 4. The command preflights first and then moves the robot, so use
 a clear test area and start with the shortest configured distance when checking
 the interpreter.
@@ -170,10 +168,12 @@ After checking the measured heading, path, and stop behavior from that action,
 run the episode in the same terminal:
 
 ```bash
-python run.py run --robot-ip=192.168.0.77
+python run.py run --robot_ip=192.168.0.77 --smoothing=none
 ```
 
-By default, `run` applies 2nd-order Butterworth action smoothing (`--smoothing=butterworth`) to suppress trajectory jitters. Pass `--smoothing=none` to execute raw discrete actions.
+`run` defaults to `--smoothing=none`. EMA and Butterworth are available as
+explicit experiment conditions; the offline comparisons below do not require
+running either filter on the robot.
 
 Press Ctrl-C or publish `std_msgs/msg/Bool` with `data: true` to
 `/robot_demo/stop` to stop. Trained-policy runs write
@@ -213,7 +213,7 @@ and keeps correcting yaw. The minimum speed avoids stalling below the Burger's
 drive deadband near a target. If the heading error exceeds `reorient_threshold`,
 it returns to `rotating`. At the target it enters `settling`, waits for measured
 linear and angular motion to stop for `settle_duration`, then enters `holding`
-and sends zero velocity until the 30-second slot ends. An unfinished command or
+and sends zero velocity until the 10-second slot ends. An unfinished command or
 stale mocap stops the command, then the policy replans after a fresh pose.
 Wall-buffer violations remain terminal faults. The 0.05 m `turn_clearance` lets
 the controller make space before a close turn.
@@ -230,24 +230,26 @@ reachability, a live mocap pose, and a `/cmd_vel` subscriber, without motion),
 `move` (preflight and execute one manually selected discrete action), and `run`
 (continue policy inference and robot movement until the user stops it or a
 safety fault occurs). On task completion or the native episode horizon, `run`
-restarts policy state at the current measured robot pose. `--max-actions` is
+restarts policy state at the current measured robot pose. `--max_actions` is
 accepted for compatibility but does not cap `run`.
 
 ## Action smoothing (Butterworth & EMA)
 
 Discrete radial action spaces (8 directions) can introduce high-frequency angular jitter when subpolicies oscillate between adjacent 45° sectors. To produce smooth robot motion without retraining models or modifying CPC action spaces, real-time causal filtering is applied to the 2D Cartesian displacements in `PrimitiveZone.plan`:
 
-- **Butterworth** (`--smoothing=butterworth`, default): 2nd-order digital low-pass filter ($f_c = 1.0\text{ Hz}$, $f_s = 10\text{ Hz}$, initialized with `scipy.signal.lfilter_zi` to prevent startup transients). Yields ~79% jitter reduction.
-- **EMA** (`--smoothing=ema`): Exponential Moving Average ($y_t = \alpha x_t + (1 - \alpha) y_{t-1}$, $\alpha = 0.4$). Yields ~60% jitter reduction.
+- **Butterworth** (`--smoothing=butterworth`): 2nd-order digital low-pass filter, initialized with `scipy.signal.lfilter_zi`.
+- **EMA** (`--smoothing=ema`): Exponential Moving Average ($y_t = \alpha x_t + (1 - \alpha) y_{t-1}$, $\alpha = 0.4$).
 - **None** (`--smoothing=none`): Raw, unfiltered discrete actions.
 
 Filter states persist across subtask transitions within an episode and reset only when an episode restarts.
+The Butterworth filter is applied once per primitive action but uses a nominal
+10 Hz sample rate, so its 1 Hz setting is not a measured robot frequency.
 
 ### CLI flags
 
 Both `simulate_policy.py` and `run.py` accept the following smoothing flags:
 
-- `--smoothing`: Filter algorithm (`butterworth`, `ema`, `none`; default: `butterworth`).
+- `--smoothing`: Filter algorithm (`butterworth`, `ema`, `none`; robot default: `none`, offline simulator default: `butterworth`).
 - `--butter_cutoff`: Butterworth cutoff frequency in Hz (default: `1.0`).
 - `--butter_order`: Butterworth filter order (default: `2`).
 - `--ema_alpha`: EMA smoothing coefficient in $(0, 1]$ (default: `0.4`).
@@ -257,30 +259,31 @@ Both `simulate_policy.py` and `run.py` accept the following smoothing flags:
 Offline trajectory simulation with smoothing:
 
 ```bash
-python simulate_policy.py \
-  --arena=configs/robot_demo/arenas/seed_383.json \
-  --wrapper_config=configs/zone/hrl/8.j/8.j.b_hrl_wrapper_rep2.yaml \
-  --primitive_model=out/zone/cpc/pr/8.i.b/cpc_10.0M/rep_2/best_model.zip \
-  --upper_model=out/zone/ltl_hl/8.j.b/hl_policy_zone_30.0M/rep_2/final_model_8.j.b_30.0M_rep_2.zip \
-  --smoothing=butterworth \
-  --output=artifacts/fixed_seed/seed_383_trajectory.png
+for seed in 0 383; do
+  for method in ema butterworth; do
+    python scripts/robot_demo/simulate_policy.py \
+      --arena="configs/robot_demo/arenas/seed_${seed}.json" \
+      --smoothing="${method}" \
+      --output="artifacts/open_loop_smoothing/seed_${seed}_${method}.png"
+  done
+done
 ```
 
 Physical robot execution with smoothing:
 
 ```bash
-python run.py run --robot-ip=192.168.0.77 --smoothing=butterworth
+python run.py run --robot_ip=192.168.0.77 --smoothing=butterworth
 ```
 
 ## Seed 383 arena and offline trajectory
 
-The default [physical arena](configs/arena.json) and
-[offline arena](configs/robot_demo/arenas/seed_383.json) use the same fixed seed
+The default [physical arena](../../configs/arena.json) and
+[offline arena](../../configs/robot_demo/arenas/seed_383.json) use the same fixed seed
 383 task, start, zones, and walls. The physical arena retains the measured
 Qualisys transform, 0.02 m/s minimum drive speed, and the previously accepted
 0.01 m target tolerance. The offline arena uses an identity Mocap transform and
-the guide's 0.003048 m target tolerance. Both use a 30 s action slot. The
-original saved JSON was not supplied, so other fields use this repo's settings.
+the guide's 0.003048 m target tolerance. The physical arena uses a 10 s action
+slot; the offline arena uses a 30 s slot.
 For a live run, place the robot at the listed world start facing +x;
 `run.py run` reads its actual Qualisys pose and does not move it to the saved
 start automatically.
@@ -301,11 +304,10 @@ start automatically.
 | Black 2            | (4, 10)          | (-0.4572, 1.3716)  |
 
 One Zone unit is 0.3048 m. All zones have radius 0.25 Zone units (0.0762 m). The
-inner wall faces are at x/y = ±1.524 m. Run `python simulate_policy.py` to
-regenerate the
-[offline seed 383 plot](artifacts/fixed_seed/seed_383_trajectory.png) and its
-adjacent JSON trajectory. The saved ideal-motion rollout reached `task_success`
-in 140 actions; it is not a Gazebo or robot run.
+inner wall faces are at x/y = ±1.524 m. Run
+`python scripts/robot_demo/simulate_policy.py` to generate an offline PNG and
+adjacent JSON trajectory. This is an ideal-unicycle simulation, not a Gazebo
+or robot run.
 
 ## Source notes
 
@@ -314,4 +316,3 @@ with an atomic QTM frame update and freshness gate. `scripts/robot_demo/mocap.py
 The policy hierarchy, action mapping, and feedback controller reside under `hrl_tl/robot_demo/`,
 with trajectory rendering in `hrl_tl/robot_demo/rendering/` and kinematic unicycle simulation in
 `hrl_tl/robot_demo/simulation/`.
-

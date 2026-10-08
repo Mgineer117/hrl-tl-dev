@@ -73,7 +73,7 @@ flags.DEFINE_string(
 )
 _SMOOTHING = flags.DEFINE_enum(
     "smoothing",
-    "butterworth",
+    "none",
     ["none", "ema", "butterworth"],
     "Action smoothing filter to apply.",
 )
