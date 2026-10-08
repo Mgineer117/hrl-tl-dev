@@ -24,7 +24,7 @@ The native ContGrid velocity state is retained because the checkpoint was
 trained with that state; position and zone visits come from the corrected
 Qualisys pose.
 
-Each primitive has a **10-second slot** (`robot.motion.motion_timeout` in
+Each primitive has a **5-second slot** (`robot.motion.motion_timeout` in
 `configs/arena.json`). The controller turns toward the waypoint before driving
 forward, stops at the target, then publishes zero velocity for the rest of the
 slot. At the deadline, an unfinished command stops and the policy replans from
@@ -213,7 +213,7 @@ and keeps correcting yaw. The minimum speed avoids stalling below the Burger's
 drive deadband near a target. If the heading error exceeds `reorient_threshold`,
 it returns to `rotating`. At the target it enters `settling`, waits for measured
 linear and angular motion to stop for `settle_duration`, then enters `holding`
-and sends zero velocity until the 10-second slot ends. An unfinished command or
+and sends zero velocity until the 5-second slot ends. An unfinished command or
 stale mocap stops the command, then the policy replans after a fresh pose.
 Wall-buffer violations remain terminal faults. The 0.05 m `turn_clearance` lets
 the controller make space before a close turn.
@@ -269,6 +269,10 @@ for seed in 0 383; do
 done
 ```
 
+The offline simulator stops at the first action that does not finish within
+the 5 s slot. These plots can therefore be partial; the physical `run` mode
+stops that action and replans from the next fresh Qualisys pose.
+
 Physical robot execution with smoothing:
 
 ```bash
@@ -282,8 +286,8 @@ The default [physical arena](../../configs/arena.json) and
 383 task, start, zones, and walls. The physical arena retains the measured
 Qualisys transform, 0.02 m/s minimum drive speed, and the previously accepted
 0.01 m target tolerance. The offline arena uses an identity Mocap transform and
-the guide's 0.003048 m target tolerance. The physical arena uses a 10 s action
-slot; the offline arena uses a 30 s slot.
+the guide's 0.003048 m target tolerance. All included arenas use a 5 s action
+slot.
 For a live run, place the robot at the listed world start facing +x;
 `run.py run` reads its actual Qualisys pose and does not move it to the saved
 start automatically.

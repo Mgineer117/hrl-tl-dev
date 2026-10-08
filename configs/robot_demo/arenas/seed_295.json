@@ -539,7 +539,7 @@
       "stop_linear_speed": 0.012,
       "stop_angular_speed": 0.04,
       "settle_duration": 0.3,
-      "motion_timeout": 30.0,
+      "motion_timeout": 5.0,
       "pose_timeout": 0.5,
       "startup_timeout": 15.0,
       "action_timeout": 5.0
